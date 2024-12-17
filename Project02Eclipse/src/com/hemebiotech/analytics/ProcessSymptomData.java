@@ -6,10 +6,10 @@ import java.util.TreeMap;
 /**
  * This class provides a method to process a provided symptoms list and return a sorted collection of unique symptoms with their frequency of occurrence.
  */
-public class ProcessSymptomDataFromFile implements ISymptomProcessor {
+public class ProcessSymptomData implements ISymptomProcessor {
 	private List<String> symptomsList;
 	
-	public ProcessSymptomDataFromFile(List <String> symptomsList) {
+	public ProcessSymptomData(List <String> symptomsList) {
 		this.symptomsList = symptomsList;
 	}
 
