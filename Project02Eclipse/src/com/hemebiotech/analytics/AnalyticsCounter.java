@@ -12,20 +12,16 @@ public class AnalyticsCounter {
 	public static void main(String args[]) throws Exception {
 		BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
 		String line = reader.readLine();
-
-		int i = 0;
-		int headCount = 0;
 		while (line != null) {
-			i++;
 			System.out.println("symptom from file: " + line);
 			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
+				headacheCount++;
+				System.out.println("number of headaches: " + headacheCount);
 			}
 			else if (line.equals("rash")) {
 				rashCount++;
 			}
-			else if (line.contains("pupils")) {
+			else if (line.equals("pupils")) {
 				pupilCount++;
 			}
 			
