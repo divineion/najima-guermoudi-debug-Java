@@ -1,6 +1,10 @@
 # output directory
 /bin/
 
+# output file
+result.out
+
 # IDE configuration files
 .project
 .classpath
+
