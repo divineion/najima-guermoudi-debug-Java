@@ -21,6 +21,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	public ReadSymptomDataFromFile (String filepath) {
 		this.filepath = filepath;
 	}
+	
 	/**
 	 * This method reads the provided text file line by line and adds each line to an ArrayList "result". 
 	 * @return result, the array containing all symptoms, including possible duplicates
@@ -39,6 +40,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 					result.add(line);
 					line = reader.readLine();
 				}
+				
 				reader.close();
 			} catch (IOException e) {
 				e.printStackTrace();
