@@ -1,39 +1,47 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;
-	private static int rashCount = 0;
-	private static int pupilCount = 0;
+	private ISymptomReader reader;
+	private ISymptomWriter writer;
 	
-	public static void main(String args[]) throws IOException {
-		BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
-		String line = reader.readLine();
-		while (line != null) {
-
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headacheCount++;
-				System.out.println("number of headaches: " + headacheCount);
-			}
-			else if (line.equals("rash")) {
-				rashCount++;
-			}
-			else if (line.equals("dilated pupils")) {
-				pupilCount++;
-			}
-			
-			line = reader.readLine();
+	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
+		this.reader = reader;
+		this.writer = writer;
+	}
+	
+	public List<String> getSymptoms() {
+		return reader.getSymptoms();
+	}
+	
+	public Map<String, Integer> countSymptoms(List<String> symptoms) {
+		if (symptoms == null || symptoms.isEmpty()) {
+		    throw new IllegalArgumentException("The symptoms list cannot be null or empty");
 		}
 		
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dilated pupils: " + pupilCount + "\n");
-		writer.close();
+		Map<String, Integer> symptomOccurrences = new HashMap<>();
+		
+		for (String symptom : symptoms) {
+			if (!symptomOccurrences.containsKey(symptom)) {
+				symptomOccurrences.put(symptom, 1);
+			} else {
+				symptomOccurrences.replace(symptom, symptomOccurrences.get(symptom)+1);
+			} 
+		}
+
+		return symptomOccurrences;
+	}
+	
+	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
+		Map<String, Integer> sortedSymptoms = new TreeMap<>(symptoms);
+		return sortedSymptoms; 
+	}
+	
+	public void writeSymptoms(Map<String, Integer> symptoms) {
+		writer.writeSymptoms(symptoms);
 	}
 }
