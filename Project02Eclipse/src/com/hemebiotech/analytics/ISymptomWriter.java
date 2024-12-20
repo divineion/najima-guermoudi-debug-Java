@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -10,6 +11,7 @@ public interface ISymptomWriter {
 	 * Writes symptoms and their occurs in a text file
 	 * 
 	 * @param symptoms : a Map of symptom and theirs occurs, alphabetically sorted
+	 * @throws IOException 
 	 */
-	void writeSymptoms(Map<String, Integer> symptoms);
+	void writeSymptoms(Map<String, Integer> symptoms) throws IOException;
 }

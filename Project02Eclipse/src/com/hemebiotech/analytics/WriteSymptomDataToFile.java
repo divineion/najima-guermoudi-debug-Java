@@ -16,13 +16,14 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	 * @throws IOException if an I/O error occurs while writing to the file. 
 	 */
 	@Override
-	public void writeSymptoms(Map<String, Integer> symptoms) {
+	public void writeSymptoms(Map<String, Integer> symptoms) throws IOException {
 		try (FileWriter writer = new FileWriter ("result.out")) {
 			for (Entry<String, Integer> symptomOccurrence : symptoms.entrySet()) {
 				writer.write(symptomOccurrence.getKey() + " : " + symptomOccurrence.getValue() + "\n");
 			}
+			
 		} catch(IOException e) {
-			e.printStackTrace();
+			throw e;
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package com.hemebiotech.analytics;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 /**
@@ -24,24 +26,29 @@ public class Main {
      * Entry point of the application. Initiates the reading, processing, and writing of symptom data.
      *
      * @param args Command-line arguments (not used in this implementation).
+	 * @throws IOException 
      */
 	public static void main(String[] args) {
 		
 		String filePath = "symptoms.txt";
 		
+		try {
 		ISymptomReader reader = new ReadSymptomDataFromFile(filePath);
-		
 		ISymptomWriter writer = new WriteSymptomDataToFile();
-		
 		AnalyticsCounter counter = new AnalyticsCounter(reader, writer);
 		
 		List<String> symptoms = reader.getSymptoms();
-		
 		Map<String, Integer> symptomOccurrences = counter.countSymptoms(symptoms);
-		
 		Map<String, Integer> sortedSymptoms = counter.sortSymptoms(symptomOccurrences);
 		
 		writer.writeSymptoms(sortedSymptoms);
+		
+		} catch (FileNotFoundException e) {
+			// @Todo write message in file
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
 }
