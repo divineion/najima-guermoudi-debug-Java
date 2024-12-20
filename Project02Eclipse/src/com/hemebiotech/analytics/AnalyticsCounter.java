@@ -1,5 +1,6 @@
 package com.hemebiotech.analytics;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class AnalyticsCounter {
 		this.writer = writer;
 	}
 	
-	public List<String> getSymptoms() {
+	public List<String> getSymptoms() throws IOException {
 		return reader.getSymptoms();
 	}
 	
@@ -41,7 +42,7 @@ public class AnalyticsCounter {
 		return sortedSymptoms; 
 	}
 	
-	public void writeSymptoms(Map<String, Integer> symptoms) {
+	public void writeSymptoms(Map<String, Integer> symptoms) throws IOException {
 		writer.writeSymptoms(symptoms);
 	}
 }
