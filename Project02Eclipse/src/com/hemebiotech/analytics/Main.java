@@ -1,9 +1,10 @@
 package com.hemebiotech.analytics;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  * Main class for the symptom analytics application.
  * This class initializes the reading, counting, sorting, and writing processes for symptom data.
@@ -28,8 +29,9 @@ public class Main {
      * @param args Command-line arguments (not used in this implementation).
 	 * @throws IOException 
      */
+	private static Logger logger = LogManager.getLogger(Main.class);
+
 	public static void main(String[] args) {
-		
 		String filePath = "symptoms.txt";
 		
 		try {
@@ -37,18 +39,16 @@ public class Main {
 		ISymptomWriter writer = new WriteSymptomDataToFile();
 		AnalyticsCounter counter = new AnalyticsCounter(reader, writer);
 		
+		// Process data
 		List<String> symptoms = reader.getSymptoms();
 		Map<String, Integer> symptomOccurrences = counter.countSymptoms(symptoms);
 		Map<String, Integer> sortedSymptoms = counter.sortSymptoms(symptomOccurrences);
 		
+		// Write results
 		writer.writeSymptoms(sortedSymptoms);
 		
-		} catch (FileNotFoundException e) {
-			// @Todo write message in file
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error("An unexpected error occured : {}", e.getMessage());
 		}
 	}
 }
