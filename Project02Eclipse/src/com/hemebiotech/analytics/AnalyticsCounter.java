@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class AnalyticsCounter {
+	private static Logger logger = LogManager.getLogger(AnalyticsCounter.class);
 	private ISymptomReader reader;
 	private ISymptomWriter writer;
 	
@@ -21,7 +25,7 @@ public class AnalyticsCounter {
 	
 	public Map<String, Integer> countSymptoms(List<String> symptoms) {
 		if (symptoms == null || symptoms.isEmpty()) {
-		    throw new IllegalArgumentException("The symptoms list cannot be null or empty");
+			logger.error("The symptoms list cannot be null or empty.");
 		}
 		
 		Map<String, Integer> symptomOccurrences = new HashMap<>();

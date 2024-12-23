@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Simple brute force implementation
  *
@@ -14,6 +17,8 @@ import java.util.List;
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String filepath;
+	
+	private static Logger logger = LogManager.getLogger(ReadSymptomDataFromFile.class);
 	
 	/**
 	 * 
@@ -25,6 +30,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	
 	/**
 	 * This method reads the provided text file line by line and adds each line to an ArrayList "result". 
+	 * 
 	 * @return result, the array containing all symptoms, including possible duplicates
 	 * @throws FileNotFoundException if an attempt to open the file denoted by a specified pathname has failed, 
 	 * 	IOException if any I/O exception occurs. 
@@ -36,6 +42,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		
 		if (filepath != null) {
 			try {
+				logger.info("Attempt to read the file '{}'.", filepath);
 				BufferedReader reader = new BufferedReader (new FileReader(filepath));
 				String line = reader.readLine();
 				
@@ -47,9 +54,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				reader.close();
 				
 			} catch (FileNotFoundException e) {
-				throw e;
+				logger.error("The specified file '{}' could not be found. Please check the file path and try again.", filepath);
+				
 			} catch (IOException e) {
-				throw e;
+				logger.error(e.getMessage());			
 			}
 		}
 				
