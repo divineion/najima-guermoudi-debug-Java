@@ -9,6 +9,8 @@ import java.util.TreeMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.hemebiotech.analytics.constants.ErrorMessages;
+
 public class AnalyticsCounter {
 	private static Logger logger = LogManager.getLogger(AnalyticsCounter.class);
 	private ISymptomReader reader;
@@ -24,8 +26,8 @@ public class AnalyticsCounter {
 	}
 	
 	public Map<String, Integer> countSymptoms(List<String> symptoms) {
-		if (symptoms == null || symptoms.isEmpty()) {
-			logger.error("The symptoms list cannot be null or empty.");
+		if (symptoms == null) {
+			logger.error(ErrorMessages.SYMPTOMS_LIST_NULL);
 		}
 		
 		Map<String, Integer> symptomOccurrences = new HashMap<>();

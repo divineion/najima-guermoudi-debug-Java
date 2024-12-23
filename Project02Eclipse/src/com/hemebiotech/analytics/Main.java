@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.hemebiotech.analytics.constants.ErrorMessages;
 /**
  * Main class for the symptom analytics application.
  * This class initializes the reading, counting, sorting, and writing processes for symptom data.
@@ -32,7 +34,7 @@ public class Main {
 	private static Logger logger = LogManager.getLogger(Main.class);
 
 	public static void main(String[] args) {
-		String filePath = "symptoms.txt";
+		String filePath = "ymptoms.txt";
 		
 		try {
 		ISymptomReader reader = new ReadSymptomDataFromFile(filePath);
@@ -48,7 +50,7 @@ public class Main {
 		writer.writeSymptoms(sortedSymptoms);
 		
 		} catch (Exception e) {
-			logger.error("An unexpected error occured : {}", e.getMessage());
+			logger.error(ErrorMessages.UNEXPECTED_ERROR, e.getMessage());
 		}
 	}
 }

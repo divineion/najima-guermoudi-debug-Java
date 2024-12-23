@@ -10,6 +10,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.hemebiotech.analytics.constants.ErrorMessages;
+import com.hemebiotech.analytics.constants.InfoMessages;
+
 /**
  * Simple brute force implementation
  *
@@ -42,7 +45,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		
 		if (filepath != null) {
 			try {
-				logger.info("Attempt to read the file '{}'.", filepath);
+				logger.info(InfoMessages.FILE_READ_ATTEMPT, filepath);
 				BufferedReader reader = new BufferedReader (new FileReader(filepath));
 				String line = reader.readLine();
 				
@@ -54,7 +57,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				reader.close();
 				
 			} catch (FileNotFoundException e) {
-				logger.error("The specified file '{}' could not be found. Please check the file path and try again.", filepath);
+				logger.error(ErrorMessages.FILE_NOT_FOUND, filepath);
 				
 			} catch (IOException e) {
 				logger.error(e.getMessage());			

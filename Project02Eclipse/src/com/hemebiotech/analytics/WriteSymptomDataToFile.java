@@ -8,6 +8,8 @@ import java.util.Map.Entry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.hemebiotech.analytics.constants.InfoMessages;
+
 public class WriteSymptomDataToFile implements ISymptomWriter {
 	
 	private static Logger logger = LogManager.getLogger(WriteSymptomDataToFile.class);
@@ -24,8 +26,8 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	@Override
 	public void writeSymptoms(Map<String, Integer> symptoms) throws IOException {
 		
-		if (symptoms.isEmpty() ) {
-			logger.info("The data is empty.");
+		if (symptoms.isEmpty()) {
+			logger.info(InfoMessages.EMPTY_MAP);
 			
 			return;
 		}
@@ -35,7 +37,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 			writer.write(symptomOccurrence.getKey() + " : " + symptomOccurrence.getValue() + "\n");
 			}
 			
-			logger.info("The output data has been successfully written to the file 'result.out'.");
+			logger.info(InfoMessages.FILE_WRITE_SUCCESS);
 			
 		} catch(IOException e) {
 			logger.error(e.getMessage());
