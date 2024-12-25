@@ -49,6 +49,8 @@ public class Main {
 		// Write results
 		writer.writeSymptoms(sortedSymptoms);
 		
+		logger.info("End of program.");
+		
 		} catch (Exception e) {
 			logger.error(ErrorMessages.UNEXPECTED_ERROR, e.getMessage());
 		}
