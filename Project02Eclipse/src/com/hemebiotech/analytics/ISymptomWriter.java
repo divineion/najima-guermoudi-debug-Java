@@ -10,7 +10,7 @@ public interface ISymptomWriter {
 	/**
 	 * Writes symptoms and their occurs in a text file
 	 * 
-	 * @param symptoms : a Map of symptom and theirs occurs, alphabetically sorted
+	 * @param symptoms : a {@link Map} of symptom and theirs occurs, alphabetically sorted
 	 * @throws IOException 
 	 */
 	void writeSymptoms(Map<String, Integer> symptoms) throws IOException;

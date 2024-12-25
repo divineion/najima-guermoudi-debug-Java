@@ -18,7 +18,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	 * This method iterates over a provided Map of symptoms with their occurrences,
 	 *  and writes each entry in a text file named "result.out".
 	 * 
-	 * @param symptoms : a Map where symptoms (String) are keys and occurrences (Integer) are values.
+	 * @param symptoms : a {@link Map} where symptoms are keys as {@link String} and occurrences are values as {@link Integer}
 	 * 	Each entry will be written on a new line.
 	 * 
 	 * @throws IOException if an I/O error occurs while writing to the file. 
