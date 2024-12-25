@@ -1,9 +1,6 @@
 # output directory
 bin/
 
-# output file
-result.out
-
 # IDE configuration files
 ## Eclipse
 .project
