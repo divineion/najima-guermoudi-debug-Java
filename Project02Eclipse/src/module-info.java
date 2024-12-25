@@ -4,6 +4,6 @@
 /**
  * 
  */
-module najima_guermoudi_debug_java {
+module com.hemebiotech.analytics {
 	requires org.apache.logging.log4j;
 }
